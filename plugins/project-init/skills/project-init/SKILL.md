@@ -37,6 +37,7 @@ docs/
 ├── development_plan.md    ← 개발 계획서           (개발 전 작성)
 ├── context_note.md        ← 맥락 노트             (개발 전 작성)
 ├── checklist.md           ← 체크리스트            (verifier가 소단위마다 업데이트)
+├── code_rules.md          ← 상세 코드 규칙         (읽기 전용, CLAUDE.md에서 @참조)
 ├── technical_doc.md       ← 기술 문서             (verifier가 소단위마다 누적)
 ├── completion_report.md   ← 완료 보고서           (verifier가 소단위마다 누적)
 ├── deployment_guide.md    ← 배포 가이드           (개발 중 누적 → 완료 후 정리)
@@ -118,6 +119,10 @@ docs/
 ### verifier.md 템플릿
 
 `assets/templates/agents/verifier.md` 파일을 읽어 사용한다.
+
+### code_rules.md 템플릿
+
+`assets/templates/docs/code_rules.md` 파일을 읽어 사용한다.
 
 ### technical_doc.md 템플릿
 
