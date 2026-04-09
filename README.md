@@ -11,8 +11,8 @@
 ## 새 환경에서 사용하기
 
 ```bash
-git clone https://github.com/HunminKim/claude.git ~/.claude-config
-cd ~/.claude-config
+git clone https://github.com/HunminKim/claude.git ~/claude-config
+cd ~/claude-config
 bash setup.sh
 ```
 
