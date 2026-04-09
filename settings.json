@@ -1,16 +1,9 @@
 {
-  "enabledPlugins": {
-    "code-review@claude-plugins-official": true,
-    "code-simplifier@claude-plugins-official": true,
-    "skill-creator@claude-plugins-official": true,
-    "hookify@claude-plugins-official": true,
-    "project-init@local": true
-  },
   "extraKnownMarketplaces": {
-    "claude-plugins-official": {
+    "hunminkim": {
       "source": {
         "source": "github",
-        "repo": "anthropics/claude-plugins-official"
+        "repo": "HunminKim/claude"
       }
     }
   }
