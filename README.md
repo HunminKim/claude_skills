@@ -4,32 +4,18 @@ HunminKim의 개인 Claude Code 플러그인 저장소.
 
 ## 새 환경에서 사용하기
 
-### 1. 마켓플레이스 등록
-
-`~/.claude/settings.json` 에 아래 내용을 추가한다:
-
-```json
-{
-  "extraKnownMarketplaces": {
-    "hunminkim": {
-      "source": {
-        "source": "github",
-        "repo": "HunminKim/claude"
-      }
-    }
-  }
-}
-```
-
-### 2. 플러그인 설치
-
 ```bash
-claude plugins install project-init@hunminkim
+git clone https://github.com/HunminKim/claude.git ~/claude-config
+cd ~/claude-config
+bash install.sh
 ```
 
-### 3. 리로드
+`install.sh` 가 하는 일:
+1. `hunminkim` 마켓플레이스 등록
+2. 공식 플러그인 설치 (code-review, code-simplifier, skill-creator, hookify)
+3. 개인 플러그인 설치 (project-init)
 
-Claude Code 재시작 또는 `/reload-plugins`
+설치 후 Claude Code 재시작 또는 `/reload-plugins`
 
 ---
 
