@@ -27,13 +27,40 @@ bash install.sh
 
 **호출:** `/project-init` 또는 "프로젝트 초기화해줘"
 
-**생성되는 것들:**
-- `docs/development_plan.md` — 개발 계획서
-- `docs/context_note.md` — 맥락 노트
-- `docs/checklist.md` — 체크리스트
-- `docs/debug/` — 디버그 패치 노트 폴더
-- `.claude/agents/verifier.md` — 소단위 검증 전담 서브에이전트
-- `CLAUDE.md` — 프로젝트 개요 + 개발 원칙 (100줄 이내)
+#### 생성되는 파일
+
+| 파일 | 시점 | 작성 주체 |
+|------|------|----------|
+| `CLAUDE.md` | 초기화 시 | /project-init |
+| `docs/development_plan.md` | 초기화 시 | 사용자 작성 |
+| `docs/context_note.md` | 초기화 시 | 사용자 작성 |
+| `docs/checklist.md` | 초기화 시 → 소단위마다 업데이트 | verifier (자동) |
+| `docs/technical_doc.md` | 소단위 완료마다 누적 | verifier (자동) |
+| `docs/completion_report.md` | 소단위 완료마다 누적 | verifier (자동) |
+| `docs/deployment_guide.md` | 개발 중 누적 → 완료 후 정리 | verifier + 사용자 |
+| `docs/retrospective.md` | 완료 사인 후 | Claude |
+| `docs/debug/*.md` | 버그 발생 시 | Claude |
+| `.claude/agents/verifier.md` | 초기화 시 | /project-init |
+
+#### 개발 워크플로우
+
+```
+사용자: 기능 구현 요청
+    ↓
+Claude: 소단위로 구현
+    ↓
+Claude: @verifier 호출 (CLAUDE.md에 명시, 예외 없음)
+    ↓
+verifier: 검증 후 docs/.verifier_result.json 저장
+    ↓
+PostToolUse 훅 자동 감지 (컨텍스트 무관)
+    ↓
+checklist / completion_report / technical_doc 자동 업데이트
+    ↓
+.verifier_result.json 자동 삭제
+```
+
+> 기능 그룹이 완전히 끝나면 `/compact` 실행 (소단위마다 하지 않음)
 
 ---
 
