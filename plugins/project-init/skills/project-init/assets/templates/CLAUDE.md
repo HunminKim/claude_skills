@@ -15,6 +15,22 @@
 {{PROJECT_STRUCTURE}}
 ```
 
+## 빌드 및 테스트
+
+```bash
+# 빌드
+{{BUILD_COMMAND}}
+
+# 테스트 전체
+{{TEST_COMMAND}}
+
+# 테스트 단일
+{{TEST_SINGLE_COMMAND}}
+
+# 린트
+{{LINT_COMMAND}}
+```
+
 ## 개발 원칙
 
 ### 작업 프로세스

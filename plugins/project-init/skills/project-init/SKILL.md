@@ -49,6 +49,10 @@ docs/
 - `{{TECH_STACK}}` — 기술 스택 (언어, 프레임워크, DB 등)
 - `{{PROJECT_DESCRIPTION}}` — 프로젝트 목적 한 줄 요약
 - `{{PROJECT_STRUCTURE}}` — 핵심 디렉토리 구조 (3~5줄 이내)
+- `{{BUILD_COMMAND}}` — 빌드 명령어 (없으면 해당 줄 제거)
+- `{{TEST_COMMAND}}` — 전체 테스트 실행 명령어
+- `{{TEST_SINGLE_COMMAND}}` — 단일 테스트 실행 명령어
+- `{{LINT_COMMAND}}` — 린트 명령어 (없으면 해당 줄 제거)
 
 이미 `CLAUDE.md`가 있으면:
 - 기존 프로젝트 내용을 읽고 보존하면서
