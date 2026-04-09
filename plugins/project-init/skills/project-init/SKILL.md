@@ -34,14 +34,18 @@ description: 프로젝트 초기화 스킬 — 새 프로젝트를 시작할 때
 
 ```
 docs/
-├── development_plan.md   ← 개발 계획서
-├── context_note.md       ← 맥락 노트
-├── checklist.md          ← 체크리스트
-└── debug/                ← 디버깅 패치 노트 저장 폴더
+├── development_plan.md    ← 개발 계획서           (개발 전 작성)
+├── context_note.md        ← 맥락 노트             (개발 전 작성)
+├── checklist.md           ← 체크리스트            (verifier가 소단위마다 업데이트)
+├── technical_doc.md       ← 기술 문서             (verifier가 소단위마다 누적)
+├── completion_report.md   ← 완료 보고서           (verifier가 소단위마다 누적)
+├── deployment_guide.md    ← 배포 가이드           (개발 중 누적 → 완료 후 정리)
+├── retrospective.md       ← 회고                  (완료 사인 후 작성)
+└── debug/                 ← 디버깅 패치 노트
     └── .gitkeep
 
 .claude/agents/
-└── verifier.md           ← 기능 검증 전담 서브에이전트
+└── verifier.md            ← 기능 검증 전담 서브에이전트
 ```
 
 각 문서 파일 내용은 아래 **템플릿 섹션**을 참고한다. 프로젝트 이름, 날짜(KST 기준), 기술 스택을 템플릿에 채워 넣는다.
@@ -79,6 +83,11 @@ docs/
 - `docs/context_note.md` 에서 프로젝트 배경/맥락을 기록해달라고
 - 개발 시작 전에 `docs/checklist.md` 를 함께 작성하자고
 
+문서 업데이트 자동화 흐름도 안내한다:
+- `technical_doc.md`, `completion_report.md`, `checklist.md` 는 @verifier가 소단위 완료마다 자동 업데이트
+- `deployment_guide.md` 는 개발 중 환경 관련 내용을 수시로 기록, 완료 후 정리
+- `retrospective.md` 는 사용자 완료 사인 이후 작성
+
 그리고 아래 **개발 워크플로우**를 사용자에게 명시적으로 안내한다:
 
 > **검증 워크플로우**
@@ -109,6 +118,22 @@ docs/
 ### verifier.md 템플릿
 
 `assets/templates/agents/verifier.md` 파일을 읽어 사용한다.
+
+### technical_doc.md 템플릿
+
+`assets/templates/docs/technical_doc.md` 파일을 읽어 사용한다.
+
+### completion_report.md 템플릿
+
+`assets/templates/docs/completion_report.md` 파일을 읽어 사용한다.
+
+### deployment_guide.md 템플릿
+
+`assets/templates/docs/deployment_guide.md` 파일을 읽어 사용한다.
+
+### retrospective.md 템플릿
+
+`assets/templates/docs/retrospective.md` 파일을 읽어 사용한다.
 
 ### CLAUDE.md 템플릿
 
