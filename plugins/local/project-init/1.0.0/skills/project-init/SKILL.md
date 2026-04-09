@@ -1,0 +1,100 @@
+---
+name: project-init
+description: 프로젝트 초기화 스킬 — 새 프로젝트를 시작할 때 docs/ 폴더 구조 생성, CLAUDE.md 작성, 개발 원칙 세팅을 한 번에 처리한다. "/project-init", "프로젝트 초기화", "프로젝트 시작", "init project", "프로젝트 세팅해줘", "개발 환경 초기화", "프로젝트 구조 잡아줘" 등의 요청에 반드시 이 스킬을 사용한다. 단순한 파일 생성 요청이더라도 프로젝트 시작 맥락이라면 이 스킬을 사용한다.
+---
+
+# Project Init Skill
+
+새 프로젝트를 시작할 때 필요한 문서 구조와 개발 원칙을 한 번에 세팅한다.
+
+## 실행 순서
+
+### 1단계: 프로젝트 파악
+
+현재 디렉토리를 탐색해서 프로젝트 성격을 파악한다.
+
+- 어떤 언어/프레임워크인지 (`package.json`, `requirements.txt`, `go.mod`, `Cargo.toml` 등)
+- 이미 존재하는 파일 구조
+- `docs/` 또는 `CLAUDE.md` 가 이미 있는지
+
+파악한 내용을 사용자에게 한 줄로 요약하고 ("Python FastAPI 프로젝트로 보입니다."), 초기화를 진행할 것임을 알린다.
+
+### 2단계: docs/ 폴더 + 서브에이전트 생성
+
+아래 파일들을 생성한다. 이미 파일이 존재하면 덮어쓰기 전에 사용자에게 확인한다.
+
+```
+docs/
+├── development_plan.md   ← 개발 계획서
+├── context_note.md       ← 맥락 노트
+├── checklist.md          ← 체크리스트
+└── debug/                ← 디버깅 패치 노트 저장 폴더
+    └── .gitkeep
+
+.claude/agents/
+└── verifier.md           ← 기능 검증 전담 서브에이전트
+```
+
+각 문서 파일 내용은 아래 **템플릿 섹션**을 참고한다. 프로젝트 이름, 날짜(KST 기준), 기술 스택을 템플릿에 채워 넣는다.
+
+`verifier.md`는 `assets/templates/agents/verifier.md` 템플릿을 읽어 `.claude/agents/verifier.md`로 생성한다. 이 에이전트는 소단위 작업이 완료될 때마다 구현자(메인 에이전트)와 독립적으로 기능을 검증하는 역할을 한다.
+
+### 3단계: CLAUDE.md 생성
+
+`CLAUDE.md`를 아래 **CLAUDE.md 템플릿**으로 생성한다. 100줄 이내로 유지한다.
+
+이미 `CLAUDE.md`가 있으면:
+- 기존 내용을 읽고
+- 프로젝트별 특수 규칙이 있다면 보존하면서
+- 개발 원칙 섹션을 추가/교체한다
+
+### 4단계: 완료 보고
+
+생성된 파일 목록을 보여주고, 사용자에게 다음을 안내한다:
+- `docs/development_plan.md` 에서 개발 계획을 채워달라고
+- `docs/context_note.md` 에서 프로젝트 배경/맥락을 기록해달라고
+- 개발 시작 전에 `docs/checklist.md` 를 함께 작성하자고
+
+그리고 아래 **개발 워크플로우**를 사용자에게 명시적으로 안내한다:
+
+> **검증 워크플로우**
+> 소단위 작업이 완료될 때마다 구현자가 직접 검증하지 않는다.
+> 반드시 `@verifier` 서브에이전트에게 검증을 위임한다.
+>
+> 흐름: 구현 완료 → `@verifier` 호출 → 검증 보고서 확인 → `docs/checklist.md` 업데이트
+>
+> verifier는 독립적인 시각으로 기능을 검증하고 문제를 보고하는 역할이며,
+> 수정은 하지 않는다. 수정은 메인 에이전트(구현자)의 몫이다.
+
+---
+
+## 템플릿 섹션
+
+### development_plan.md 템플릿
+
+`assets/templates/development_plan.md` 파일을 읽어 사용한다.
+
+### context_note.md 템플릿
+
+`assets/templates/context_note.md` 파일을 읽어 사용한다.
+
+### checklist.md 템플릿
+
+`assets/templates/checklist.md` 파일을 읽어 사용한다.
+
+### verifier.md 템플릿
+
+`assets/templates/agents/verifier.md` 파일을 읽어 사용한다.
+
+### CLAUDE.md 템플릿
+
+`assets/templates/CLAUDE.md` 파일을 읽어 사용한다.
+
+---
+
+## 주의사항
+
+- 모든 날짜는 KST(한국 표준시) 기준으로 표기한다
+- 이미 존재하는 파일은 사용자 확인 없이 덮어쓰지 않는다
+- CLAUDE.md는 반드시 100줄 이내로 유지한다
+- 템플릿의 `{{PROJECT_NAME}}`, `{{DATE}}`, `{{TECH_STACK}}` 등의 자리표시자는 실제 값으로 교체한다

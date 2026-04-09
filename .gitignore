@@ -1,0 +1,30 @@
+# Claude Code 런타임 데이터 (git 제외)
+sessions/
+history.jsonl
+shell-snapshots/
+paste-cache/
+todos/
+plans/
+debug/
+downloads/
+backups/
+file-history/
+projects/
+cache/
+*.backup.*
+
+# 인증 정보 (절대 커밋 금지)
+.credentials.json
+*.token
+*.key
+
+# 마켓플레이스 캐시 (설치 시 자동 생성)
+plugins/cache/claude-plugins-official/
+plugins/marketplaces/
+plugins/install-counts-cache.json
+plugins/known_marketplaces.json
+plugins/data/
+
+# OS
+.DS_Store
+Thumbs.db
