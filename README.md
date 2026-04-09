@@ -33,7 +33,7 @@ bash install.sh
 - `docs/checklist.md` — 체크리스트
 - `docs/debug/` — 디버그 패치 노트 폴더
 - `.claude/agents/verifier.md` — 소단위 검증 전담 서브에이전트
-- `CLAUDE.md` — 개발 원칙 요약 (100줄 이내)
+- `CLAUDE.md` — 프로젝트 개요 + 개발 원칙 (100줄 이내)
 
 ---
 
